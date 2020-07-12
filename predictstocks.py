@@ -1,21 +1,20 @@
 # This program predicts stock prices by using machine learning models
 
-#Install the dependencies
-import quandl
 
+import quandl
 import numpy as np 
 from sklearn.linear_model import LinearRegression
 from sklearn.svm import SVR
 from sklearn.model_selection import train_test_split
 
-#Get the stock data
+#data
 df = quandl.get("WIKI/AMZN")
 # Take a look at the data
 print(df.head())
 
-# Get the Adjusted Close Price
+#Adjusted Close Price
 df = df[['Adj. Close']]
-#Take a look at the new data
+#new data
 print(df.head())
 
 
@@ -44,10 +43,10 @@ y = y[:-forecast_out]
 print(y)
 
 
-# Split the data into 80% training and 20% testing
+
 x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-# Create and train the Support Vector Machine (Regressor)
+#Support Vector Machine (Regressor)
 svr_rbf = SVR(kernel='rbf', C=1e3, gamma=0.1)
 svr_rbf.fit(x_train, y_train)
 
